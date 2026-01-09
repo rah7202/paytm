@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Providers } from "../provider";
+import { AppbarClient } from "../components/AppbarClient";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -23,9 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <Providers>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <div className="min-w-screen min-h-screen bg-[#ebe6e6]">
+            <AppbarClient />
+            {children}
+          </div>
+        </body>
+      </Providers>
     </html>
   );
 }
