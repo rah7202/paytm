@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: BUild the Project
+    name: Build the Project
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
