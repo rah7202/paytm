@@ -54,5 +54,5 @@ app.post('/hdfcWebhook',async (req,res) => {
 });
 
 app.listen(PORT, ()=> {
-    console.log(`App is listening on ${PORT} PORT`)
+    console.log(`Bank Webhook is running on port ${PORT}`)
 })
