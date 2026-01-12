@@ -9,7 +9,7 @@
     },
 
     "build": {
-      "dependsOn": ["^build","^prisma:generate"],
+      "dependsOn": ["^build","prisma:generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
 
