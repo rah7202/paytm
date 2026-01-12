@@ -6,9 +6,9 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "db:generate":"cd packages/db && npx prisma generate",
+    "db:generate":"turbo run prisma:generate",
+    "build":"turbo run build",
     
-    "build":"npm run build:db && npm run build:user-app && npm run build:webhook",
     "build:db": "cd packages/db && npm run build",
     "build:user-app": "cd apps/user-app && npm run build",
     "build:webhook": " cd apps/bank-webhook && npm run build",
