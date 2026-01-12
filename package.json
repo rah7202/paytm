@@ -9,11 +9,11 @@
     "db:generate":"cd packages/db && npx prisma generate && cd ../..",
     "start-user-app": "cd ./apps/user-app && npm run start",
     
-    "build":"npm run build:user-app && npm run build:webhook",
-    "build:db": "cd packages/db && npm install && npm run build",
-    "build:user-app": "cd apps/user-app && npm run build",
-    "build:webhook": "cd apps/bank-webhook && npm run build && npm run build",
-    "start:webhhok": " cd apps/bank-webhook && npm run start"
+    "build":"npm run build:db && npm run build:user-app && npm run build:webhook",
+    "build:db": "npm run build -w packages/db",
+    "build:user-app": "npm run build -w apps/user-app",
+    "build:webhook": "npm run build -w apps/bank-webhook",
+    "start:webhhok": "node apps/bank-webhook/dist/index.js"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
