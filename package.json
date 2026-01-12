@@ -6,14 +6,13 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "db:generate":"cd packages/db && npx prisma generate && cd ../..",
-    "start-user-app": "cd ./apps/user-app && npm run start",
+    "db:generate":"cd packages/db && npx prisma generate",
     
     "build":"npm run build:db && npm run build:user-app && npm run build:webhook",
-    "build:db": "npm run build -w packages/db",
-    "build:user-app": "npm run build -w apps/user-app",
-    "build:webhook": "npm run build -w apps/bank-webhook",
-    "start:webhhok": "node apps/bank-webhook/dist/index.js"
+    "build:db": "cd packages/db && npm run build",
+    "build:user-app": "cd apps/user-app && npm run build",
+    "build:webhook": " cd apps/bank-webhook && npm run build",
+    "start-user-app": " cd apps/user-app && npm run start"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
