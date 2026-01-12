@@ -5,7 +5,7 @@
 
     "prisma:generate" : {
       "cache":true,
-      "outputs": ["packages/db/generated/**"]
+      "outputs": ["generated/**"]
     },
 
     "build": {
