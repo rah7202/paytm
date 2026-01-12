@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
-  "types":"dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    } 
+    }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,10 +23,10 @@
     "@prisma/client": "^6.19.1"
   },
   "devDependencies": {
-    "@types/node": "^22.19.3",
+    "@types/node": "^22.19.5",
     "prisma": "^6.19.1"
   },
   "prisma": {
-    "seed" : "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts"
   }
 }
