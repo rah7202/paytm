@@ -4,7 +4,8 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --platform=node --target=node20 --outdir=dist",
+    "build:db":"cd ../../packages/db && npm run build",
+    "build": "npm run build:db && esbuild src/index.ts --platform=node --target=node20 --outdir=dist",
     "start": "node dist/index.js"
   },
   "keywords": [],
