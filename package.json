@@ -2,7 +2,8 @@
   "name": "paytm",
   "private": true,
   "scripts": {
-    "build": "npm run build --workspace=@repo/db && npm run build --workspace=bank-webhook",
+    "build:db": "cd packages/db && npm run build",
+    "build:webhook": " cd apps/bank-webhook && npm run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
