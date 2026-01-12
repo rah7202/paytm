@@ -4,7 +4,7 @@
   "tasks": {
     "prisma:generate" : {
       "cache":true,
-      "outputs": ["!generated/prisma/**", "generated/**"]
+      "outputs": ["generated/prisma/**", "generated/**"]
     },
 
     "build": {
