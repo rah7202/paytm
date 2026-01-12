@@ -2,14 +2,17 @@
   "name": "paytm",
   "private": true,
   "scripts": {
-    "build:db": "cd packages/db && npm run build",
-    "build:webhook": " cd apps/bank-webhook && npm run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "db:generate":"cd packages/db && npx prisma generate && cd ../..",
-    "start-user-app": "cd ./apps/user-app && npm run start"
+    "start-user-app": "cd ./apps/user-app && npm run start",
+    
+    "build": "npm run build:db && npm run build:user-app && npm run build:webhook",
+    "build:db": "cd packages/db && npm run build",
+    "build:user-app": "cd apps/user-app && npm run build",
+    "build:webhook": "cd apps/bank-webhook && npm run build"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
