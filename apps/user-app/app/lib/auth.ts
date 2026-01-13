@@ -33,6 +33,24 @@ export const authOptions = {
                             email : existingUser.email
                         }
                     }
+
+                    // if (credentials.password === existingUser.password) {
+
+                    //     const newHash = await bcrypt.hash(credentials.password,10);
+                    //     await db.user.update({
+                    //         where : {id : existingUser.id},
+                    //         data : {password : newHash}
+                    //     })
+
+                    //     return {
+
+                    //         id : existingUser.id.toString(),
+                    //         name : existingUser.name,
+                    //         email : existingUser.email
+
+                    //     }
+                    // }
+
                     return null
                 }
 
