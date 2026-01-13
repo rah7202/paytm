@@ -1,5 +1,4 @@
 "use server"
-
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
 import { prisma as db } from "@repo/db";
@@ -27,7 +26,7 @@ export async function p2pTransfer(to: string, amount: number) {
 
     await db.$transaction(async (tx) => {
 
-        await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId"=${Number(from)} FOR UPDATE`;
+        await tx.$queryRaw`SELECT * FROM "Balance" WHERE "userId" = ${Number(from)} FOR UPDATE`;
 
         const fromBalance = await tx.balance.findUnique({
             where: { userId : Number(from) },
@@ -62,7 +61,7 @@ export async function p2pTransfer(to: string, amount: number) {
         await tx.p2pTransfer.create({
             data: {
                 fromUserId: Number(from),
-                toUserId:toUser.id,
+                toUserId: toUser.id,
                 amount,
                 timestamp: new Date()
             }
