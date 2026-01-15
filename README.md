@@ -66,8 +66,8 @@ graph TD
     UserApp -.->|Imports| PrismaClient
     WebhookApp -.->|Imports| PrismaClient
 
-    PrismaClient ==>|TCP Connection
-    (Transactions/Queries)| Postgres
+    PrismaClient ==>|"TCP Connection
+    (Transactions/Queries)"| Postgres
 
     %% Styling classes
     classDef external fill:#fff1f2,stroke:#e11d48,stroke-width:2px;
