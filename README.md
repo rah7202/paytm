@@ -1,137 +1,77 @@
-# Turborepo starter
+# 💸 Paytm-like App: Full-Stack Payments Monorepo
 
-This Turborepo starter is maintained by the Turborepo core team.
+A high-performance, distributed payments platform built with **Next.js**, **Node.js**, and **PostgreSQL**. This project features a decoupled architecture, secure P2P transfers, and an automated bank-webhook processing system.
 
-## Using this example
+## 🚀 Technical Highlights
 
-Run the following command:
+- **Monorepo Architecture:** Managed via **Turborepo** and **npm workspaces** to optimize build pipelines and enable seamless code sharing across frontend and backend services.
+- **Decoupled Microservices:** Independent deployment of the **User-App** (Next.js) and **Bank-Webhook** (Express) for optimized scaling on **Render**.
+- **Atomic Transactions:** Leverages **Prisma Transactions** to ensure ACID compliance during wallet balance updates and P2P transfers.
+- **Security Migration:** Successfully transitioned from plaintext storage to **Bcrypt hashing**, implementing a hybrid "auto-upgrade" logic to secure legacy user data.
+- **CI/CD & DevOps:** Automated deployment pipelines using **GitHub Actions** and **Docker** to ensure environment parity and streamlined service updates.
 
-```sh
-npx create-turbo@latest
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 14 (App Router), Tailwind CSS, NextAuth.js
+- **Backend:** Node.js, Express.js, TypeScript
+- **Database:** PostgreSQL, Prisma ORM, Neon DB
+- **Infrastructure:** Docker, Render, GitHub Actions, Turborepo
+
+---
+
+## 🏗️ System Design
+
+The application is split into two primary services that share a common database schema and shared TypeScript types:
+
+1.  **User-App:** Handles the UI, user authentication, dashboard visualization, and P2P transfer requests.
+2.  **Bank-Webhook:** A "headless" service that listens for external bank notifications to fulfill "Add Money" requests asynchronously.
+
+---
+
+## 🚦 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+)
+- Docker (Optional)
+- PostgreSQL instance (or Neon DB account)
+
+### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone [https://github.com/your-username/paytm-clone.git](https://github.com/rah7202/paytm.git)
+    cd paytm-clone
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Setup Environment Variables:**
+    Create a `.env` file in the root and add your `DATABASE_URL` and `NEXTAUTH_SECRET`.
+
+4.  **Database Migration & Seeding:**
+
+    ```bash
+    npx prisma migrate dev
+    npx prisma db seed
+    ```
+
+5.  **Run the application:**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 🐳 Docker Deployment
+
+To run the entire ecosystem (Frontend, Backend, and DB) locally using Docker:
+
+```bash
+docker-compose up --build
 ```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
-
-## End
