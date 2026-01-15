@@ -28,6 +28,65 @@ The application is split into two primary services that share a common database 
 
 ---
 
+## 🏗️ System Architecture
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#3b82f6', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#f3f4f6'}}}%%
+graph TD
+    subgraph External ["External Actors"]
+    %% ... paste the rest of the mermaid code here ...
+    class Postgres database;
+```
+
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#3b82f6', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#f3f4f6'}}}%%
+graph TD
+subgraph External ["External Actors"]
+User([👤 User Browser])
+BankApi[🏦 External Bank API]
+end
+
+    subgraph RenderDeployment ["Render Deployment (Monorepo)"]
+        style RenderDeployment fill:#f8fafc,stroke:#cbd5e1,stroke-width:2px,stroke-dasharray: 5 5
+
+        subgraph Services ["Microservices"]
+            UserApp["🖥️ User App (Next.js)
+            (Auth, Dashboard, P2P)"]
+            WebhookApp["⚙️ Bank Webhook (Express)
+            (Async Balance Updates)"]
+        end
+
+        subgraph SharedLibs ["Shared Packages"]
+            PrismaClient["📦 @repo/db
+            (Prisma Client & Schema)"]
+        end
+    end
+
+    subgraph DataLayer ["Data Layer"]
+        Postgres[(🗄️ PostgreSQL DB
+        Neon DB)]
+    end
+
+    %% Connections
+    User ==>|HTTPS / NextAuth| UserApp
+    BankApi ==>|POST Webhook| WebhookApp
+
+    UserApp -.->|Imports| PrismaClient
+    WebhookApp -.->|Imports| PrismaClient
+
+    PrismaClient ==>|TCP Connection
+    (Transactions/Queries)| Postgres
+
+    %% Styling classes
+    classDef external fill:#fff1f2,stroke:#e11d48,stroke-width:2px;
+    classDef service fill:#dbeafe,stroke:#2563eb,stroke-width:2px;
+    classDef shared fill:#f3f4f6,stroke:#64748b,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef database fill:#fef3c7,stroke:#d97706,stroke-width:2px;
+
+    class User,BankApi external;
+    class UserApp,WebhookApp service;
+    class PrismaClient shared;
+    class Postgres database;
+
 ## 🚦 Getting Started
 
 ### Prerequisites
@@ -41,8 +100,8 @@ The application is split into two primary services that share a common database 
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/paytm-clone.git](https://github.com/rah7202/paytm.git)
-    cd paytm-clone
+    git clone [https://github.com/rah7202/paytm.git](https://github.com/rah7202/paytm.git)
+    cd paytm
     ```
 
 2.  **Install dependencies:**
