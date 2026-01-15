@@ -34,16 +34,9 @@ The application is split into two primary services that share a common database 
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#3b82f6', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#f3f4f6'}}}%%
 graph TD
     subgraph External ["External Actors"]
-    %% ... paste the rest of the mermaid code here ...
-    class Postgres database;
-```
-
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#3b82f6', 'edgeLabelBackground':'#ffffff', 'tertiaryColor': '#f3f4f6'}}}%%
-graph TD
-subgraph External ["External Actors"]
-User([👤 User Browser])
-BankApi[🏦 External Bank API]
-end
+        User([👤 User Browser])
+        BankApi[🏦 External Bank API]
+    end
 
     subgraph RenderDeployment ["Render Deployment (Monorepo)"]
         style RenderDeployment fill:#f8fafc,stroke:#cbd5e1,stroke-width:2px,stroke-dasharray: 5 5
@@ -86,6 +79,7 @@ end
     class UserApp,WebhookApp service;
     class PrismaClient shared;
     class Postgres database;
+```
 
 ## 🚦 Getting Started
 
