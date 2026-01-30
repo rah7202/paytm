@@ -94,7 +94,7 @@ graph TD
 1.  **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/rah7202/paytm.git](https://github.com/rah7202/paytm.git)
+    git clone https://github.com/rah7202/paytm.git
     cd paytm
     ```
 
