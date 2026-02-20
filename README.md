@@ -1,4 +1,4 @@
-# 💸 Paytm-like App: Full-Stack Payments Monorepo
+# 💸 PayTM-like App: Full-Stack Payments Monorepo
 
 A high-performance, distributed payments platform built with **Next.js**, **Node.js**, and **PostgreSQL**. This project features a decoupled architecture, secure P2P transfers, and an automated bank-webhook processing system.
 
