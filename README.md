@@ -54,7 +54,7 @@ graph TD
         end
     end
 
-    subgraph DataLayer ["Data Layer"]
+    subgraph DataLayer ["Data  Layer"]
         Postgres[(🗄️ PostgreSQL DB
         Neon DB)]
     end
